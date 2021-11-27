@@ -1,0 +1,40 @@
+import os.path
+import pickle
+
+class Point:
+    def __init__(self, cx, cy, desc='p'):
+        self.x = cx
+        self.y = cy
+        self.descripcion = desc
+
+
+def to_string(point):
+    r = str(point.descripcion) + '(' + str(point.x) + ', ' + str(point.y) + ')'
+    return r
+
+def carga_de_datos():
+    m=open("C:\\Users\Familia\PycharmProjects\puunto.df4", "r")
+
+    t=os.path.getsize("puuntos.df4")
+    v = [None] * t
+    while m.tell() < t:
+        v[m.tell()] = pickle.load(m)
+
+    m.close()
+
+    return v
+
+def mostrar(v):
+    for i in range(len(v)):
+        print(v[i])
+
+
+def test():
+    print("Archivo")
+    v = carga_de_datos()
+    mostrar(v)
+    print("fin")
+
+
+
+test()
